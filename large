@@ -1,0 +1,32 @@
+import time
+start = time.time()
+class Pupil():
+    def __init__(self,surname,name,mark):
+        self.surname = surname
+        self.name = name
+        self.mark = mark
+best_pupils = []
+suma = 0
+amound = 0
+with open('pupils_large.txt',"r",encoding='utf-8')as file:
+    for line in file:
+        line=line.split(" ")
+        p = Pupil(line[0],line[1],int(line[2]))
+        print(p.surname,p.name,'-', p.mark)
+        best_pupils.append(p)
+
+
+vidm=[]
+suma = 0
+for p in best_pupils:
+    if p.mark == 5:
+        best_pupils.append(p.surname)
+        amound+=1
+    suma += p.mark
+print("Відмінники:")
+for i in best_pupils:
+    print(i)
+n = suma/amound
+print("Середня оцінка класу:",n)
+end = time.time()
+print("Час виконання:",end - start,'секунд')
